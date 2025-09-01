@@ -1,3 +1,4 @@
+                L-1
 feat: initialize chat application with user authentication and chat functionality
 
 - Added package.json to manage dependencies and scripts.
@@ -11,3 +12,10 @@ feat: initialize chat application with user authentication and chat functionalit
 - Created chat routes to handle chat-related requests.
 - Configured Express app with necessary middleware.
 - Initialized socket.io server for real-time communication.
+
+                L-2
+
+- Add socket authentication middleware and 
+- creating message model.
+- update dependencies
+- Integrating AI response generation
