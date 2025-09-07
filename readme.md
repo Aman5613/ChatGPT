@@ -1,4 +1,5 @@
                 L-1
+
 feat: initialize chat application with user authentication and chat functionality
 
 - Added package.json to manage dependencies and scripts.
@@ -15,7 +16,18 @@ feat: initialize chat application with user authentication and chat functionalit
 
                 L-2
 
-- Add socket authentication middleware and 
+- Add socket authentication middleware and
 - creating message model.
 - update dependencies
 - Integrating AI response generation
+- Refactor chat history retrieval and AI response generation in socket server
+
+
+                L-3
+
+feat: add Pinecone integration for vector storage and retrieval
+
+- Updated package.json and package-lock.json to include @pinecone-database/pinecone dependency.
+- Implemented vectorization of user messages and AI responses in socket server.
+- Created vector.service.js for managing Pinecone memory operations.
+- Enhanced AI response generation with vector embeddings.
