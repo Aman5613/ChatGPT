@@ -3,11 +3,15 @@ const { GoogleGenAI } = require("@google/genai");
 const ai = new GoogleGenAI({});
 
 async function generateResponse(prompt) {
-  const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
-    contents: `${prompt} +  use simple and clear language and use emojis and user-friendly formatting and write in short.`,
-  });
-  return response.text;
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: `${prompt} +  use simple and clear language and use emojis and user-friendly formatting and write in short.`,
+    });
+    return response.text;
+  } catch (error) {
+    console.error("Error generating response:", error);
+  }
 }
 
 async function generateVector(text) {

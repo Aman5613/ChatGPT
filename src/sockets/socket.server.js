@@ -32,14 +32,6 @@ async function initSocket(httpServer) {
       // console.log("Vector: ", vector);
       
       
-      // memorization
-      const memory = await queryMemory({
-        queryVector : vector,
-        metadata :{ chatID : payload.chatID },
-        limit : 3
-      })
-
-      console.log("Memory: ", memory);
       
 
       // store the vector in pinecone
@@ -52,22 +44,33 @@ async function initSocket(httpServer) {
           text : payload.prompt
         }
       }]);
-
+      
       // chat history
-      const chatHistory = (
+      const stm = (
         await messageModel
-          .find({ chatID: payload.chatID })
-          .sort({ createdAt: -1 })  // latest message upar
-          .limit(10) // purane ko bhulna jaruri hai bhai nhi to jeb dhila ho jaye ga
-          .lean()  // performance ke liye
+        .find({ chatID: payload.chatID })
+        .sort({ createdAt: -1 })  // latest message upar
+        .limit(10) // purane ko bhulna jaruri hai bhai nhi to jeb dhila ho jaye ga
+        .lean()  // performance ke liye
       ).reverse();
+      
+      // memorization
+      const llm = await queryMemory({
+        queryVector : vector,
+        metadata :{ userID : socket.user._id },
+        limit : 3
+      })
 
-      // console.log(chatHistory);
+      
+      // console.log("stm: ", stm);
+      // console.log( "llm: ", llm);
+      
 
       // Generate AI response
       const response = await generateResponse(
         // Pass the chat history to the AI service
-        JSON.stringify(chatHistory)
+        JSON.stringify([...llm.map(m => m.metadata.text), ...stm.map(s => s.content)]),
+        // payload.prompt
       );
 
       // Save the AI response to the database

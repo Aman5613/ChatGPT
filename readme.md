@@ -31,3 +31,7 @@ feat: add Pinecone integration for vector storage and retrieval
 - Implemented vectorization of user messages and AI responses in socket server.
 - Created vector.service.js for managing Pinecone memory operations.
 - Enhanced AI response generation with vector embeddings.
+
+                L-4
+
+- Refactor server routes and enhance error handling in AI service
