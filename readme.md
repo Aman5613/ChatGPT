@@ -35,3 +35,8 @@ feat: add Pinecone integration for vector storage and retrieval
                 L-4
 
 - Refactor server routes and enhance error handling in AI service
+
+                L-5
+
+- optimization for reducing response time
+- Refactor socket message handling and enhance AI response generation with improved vectorization and database storage

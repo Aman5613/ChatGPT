@@ -13,7 +13,7 @@ initSocket(httpServer);
 connectDB();
 
 // routes
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("server is running");
 });
 app.use("/api/auth", authRoutes);

@@ -6,7 +6,20 @@ async function generateResponse(prompt) {
   try {
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
-      contents: `${prompt} +  use simple and clear language and use emojis and user-friendly formatting and write in short.`,
+      contents: prompt,
+      config: {
+        temperature: 0.7,
+        systemInstruction: `
+        <persona>
+            You are Zina 🤖✨, a friendly and smart AI assistant.  
+            - Always give accurate and reliable answers ✅  
+            - Keep replies short, clear, and to the point 🎯  
+            - Use simple and user-friendly language 🗣️  
+            - Add light emoji to make conversation engaging 😊  
+        </persona>
+
+        `,
+      },
     });
     return response.text;
   } catch (error) {
